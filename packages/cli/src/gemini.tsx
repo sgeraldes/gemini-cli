@@ -89,7 +89,7 @@ import { disableMouseEvents, enableMouseEvents } from './ui/utils/mouse.js';
 import { ScrollProvider } from './ui/contexts/ScrollProvider.js';
 import ansiEscapes from 'ansi-escapes';
 import { isAlternateBufferEnabled } from './ui/hooks/useAlternateBuffer.js';
- 
+
 import { detectMouseSupport } from './utils/detectMouse.js';
 
 import { profiler } from './ui/components/DebugProfiler.js';
@@ -181,7 +181,7 @@ export async function startInteractiveUI(
   resumedSessionData: ResumedSessionData | undefined,
   initializationResult: InitializationResult,
 ) {
-  const supportMouse = checkMouseSupport();
+  const supportMouse = await checkMouseSupport();
   if (config.getDebugMode()) {
     debugLogger.debug('supportMouse: ' + supportMouse);
   }
