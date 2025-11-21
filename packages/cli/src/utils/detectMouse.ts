@@ -235,6 +235,7 @@ export function getMouseSupport(): MouseSupport {
     'osx-256color',
     'termux',
     'atomic-terminal',
+    'vscode',
   ];
 
   if (xtermMouseSupported.includes(appId)) {
@@ -249,11 +250,7 @@ export function getMouseSupport(): MouseSupport {
   // Add Windows support manually as it was requested by the user previously
   // and the library extraction might be old or not covering it
   if (process.platform === 'win32') {
-    if (
-      process.env['WT_SESSION'] ||
-      process.env['ConEmuPID'] ||
-      process.env['TERM_PROGRAM'] === 'vscode'
-    ) {
+    if (process.env['WT_SESSION'] || process.env['TERM_PROGRAM'] === 'vscode') {
       result.mouse = true;
       // We can assume xterm for these modern windows terminals
       if (result.mouseProtocol === 'none') {
